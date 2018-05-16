@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: config-server-sample
+  cloud:
+    config:
+      name: ${spring.application.name}
+      fail-fast: true
+      server:
+        bootstrap: true
+        git:
+          uri: https://github.com/matheusgg/default-config.git
+          default-label: master
+          basedir: '${user.home}/${spring.application.name}/default'
+          timeout: 10
+          clone-on-start: true
+          force-pull: true
+
+encrypt:
+  key-store:
+    location: classpath:/config-server.jks
+    password: 'ZDg0N2FlNWY1OTdhYmYzN2NiNWE4MDNj'
+    alias: config-server
+    secret: 'ZDg0N2FlNWY1OTdhYmYzN2NiNWE4MDNj'
+  rsa:
+    algorithm: oaep
+    strong: true
